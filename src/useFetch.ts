@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 
@@ -18,13 +19,9 @@ export function useFetch(url: string) {
       .then((responseData) => setData(responseData))
       .catch((fetchError) => {
         if (fetchError.name === "AbortError") {
-          setError("Request cancelled");
+          console.log("Request canceled");
         } else {
-          setError(
-            fetchError instanceof Error
-              ? fetchError.message
-              : "Unknown error"
-          );
+          setError(error);
         }
       })
       .finally(() => setLoading(false));
